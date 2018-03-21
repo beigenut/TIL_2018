@@ -9,30 +9,30 @@
 
 
 <!-- *********************첫번째 제목********************** -->
-### <span style="color:#595EFF"> 1-1. Markdown 작성법 </span>    
+### <span style="color:#595EFF"> [GitHub] 1-1. GitHub 다른 사람의 Repo 가져오기(Clone) </span>    
 
-필요할 경우 설명을 씁니다. 제대로 이해 못한 내용이 있다면 같이 씁니다. 
+GitHub 에서 다른 사람이 코딩한 레포를 불러와서 재가공 하고 싶은 경우, 
+
+나의 경우는 과제 수행을 위해 예제 코드를 다운로드 받아야 하는 경우에 활용할 수 있다.
 
 
+GitHub 웹 페이지 좌측 중앙에 위치한 'Clone and Download' 버튼을 누르고, 
+
+본인에게 알맞은 암호화 타입을 선택하여 해당 url을 복사한다. 
 
 
-
-<!-- ***********************두번째 제목******************** -->
-### <span style="color:#595EFF"> 1-2. Markdown 작성법 </span>     
-
-```javascript
-const foo = "변수 선언"
-console.log(foo)
-// 백틱 안에는 코드를 넣을 수 있습니다. 필요한 경우에는 코드도 정리해 보세요.
+터미널을 켜고 clone을 원하는 파일 경로에서 ex) ../desktop/clone 
 ```
+$ git clone "url"
+```
+을 입력하면 해당 파일 경로로 해당 repo를 다운로드 할 수 있다. 
 
-> comment comments
 
 
 
-
+<br></br>
 <!-- ***********************세번째 제목******************** -->
-### <span style="color:#595EFF"> 1-3. Markdown 작성법 </span>
+### <span style="color:#595EFF"> 1-2. 상위 folder 전체의 파일 및 하위 폴더를 GitHub 에 push 하는 방법 </span>
 
 마찬가지로 설명을`$git push origin master` 이렇게 넣거나
 
@@ -47,6 +47,20 @@ console.log(foo)
 
 
 
+
+
+<br></br>
+<!-- ***********************두번째 제목******************** -->
+### <span style="color:#595EFF"> [JS] 2-1. `${a}` 치환 활용 : Backquote/ Backtick </span>     
+
+콘솔 로그로 결과값을 출력하고자 할 때, ` (blackquote) 으로 string을 싸고, ${a} 안에 보이고자 하는 값을 넣으면 된다.
+
+```javascript
+const string1 = 'Hi, Good morning';
+console.log(`You: ${string1}`);
+```
+
+> 결과값 : You: Hi, Good morning 
 
 
 ## <strong> 2. Today I found out </strong>
