@@ -145,7 +145,7 @@ float 에러(아닌 에러)를 수정하는 방법에는
     - section 제일 하단에 빈 엘리먼트(ex. div)를 넣고 `clear:both` 속성을 부여하여 float로 인해 사라진 height 값을 기계로 하여금 읽히게 함.
 
 3. 가상 요소 선택자 `.::after` 를 활용
-    - 가상요소 선택자 ex. ::before, ::after 로 기계가 무시해도 되는 가상의 요소를 만들고 이를 block 속성을 갖게 한 후 `clear:both` 를 선언해준다. 단순히 float 만을 위한 불필요한 div 생성 난발을 방지할 수 있다. 
+    - 가상요소 선택자 ex. ::before, ::after 로 기계가 무시해도 되는 가상의 요소를 만들고 이를 block 속성을 갖게 한 후 `clear:both` 를 선언해준다. 단순히 float 만을 위한 불필요한 div 생성 남발을 방지할 수 있다. 
 
 
 
