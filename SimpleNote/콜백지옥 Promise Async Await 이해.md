@@ -1,10 +1,10 @@
 - - - 
-## May 08 2019  
+# May 08 2019  
 
 ____
 
 
-## <strong> 1. Main Topic </strong>
+# <strong> 1. Main Topic </strong>
 
 - 콜백 지옥
 
@@ -17,21 +17,20 @@ ____
 
 
 
-
-## <strong> 2. Sub Topics </strong>
-
+<br></br>
+# <strong> 2. Sub Topics </strong>
 
 <!-- *********************첫번째 제목********************** -->
-### <span style="color:#595EFF"> [Callback] 1-1. 콜백, 그리고 콜백 지옥 </span>    
+## <span style="color:#595EFF"> [Callback] 1-1. 콜백, 그리고 콜백 지옥 </span>    
 
 
-#### 자바 스크립트에서 비동기 처리란?
+### 자바 스크립트에서 비동기 처리란?
 
 `특정 코드의 실행이 완료될 때까지 기다리지 않고` 다음 코드를 먼저 수행하는 자바스크립트의 특성
 
 
 
-#### 콜백지옥이란, 
+### 콜백지옥이란, 
 
 ```js
 step1(function (value1) {
@@ -50,14 +49,14 @@ step1(function (value1) {
 ```
 
 
-#### NESTING ! 
+### NESTING ! 
 
 비동기 프로그램 작성시 위의 코드처럼 함수가 함수의 `함수의 매개 변수로 꼬리물며` 넘겨지면서 생겨나는 반복 코드. 
 
 
 
 
-#### 이게 왜 문제?
+### 이게 왜 문제?
 
 - 비동기 함수의 결과값을 받아 다음 함수로 넘겨줘야 하는 경우 코드가 복잡해짐. 머리가 아파짐.
   - Promise 는 return 값으로 resolved 된 결과 값을 넘겨줄 수 있고 .then() 에서 받아 쓸 수 있음
@@ -72,7 +71,7 @@ step1(function (value1) {
 
 
 
-#### 콜백지옥 해결 방안?
+### 콜백지옥 해결 방안?
 
 1. `동기 함수`를 사용한다
 
@@ -112,10 +111,10 @@ function afterStep2(value2) {
 
 <br></br>
 <!-- ***********************두번째 제목******************** -->
-### <span style="color:#595EFF"> [Promise] 2-1. Promise </span>
+## <span style="color:#595EFF"> [Promise] 2-1. Promise </span>
 
 
-#### Promise?
+### Promise?
 
 ```js
 function delay(sec, callback) {
@@ -148,7 +147,7 @@ delay(1, (result) => {
 `하지만, 코드 가독성이 낮다`
 
 
-<br></br>
+<br>
 
 이를 보안하기 위해 나온 `Promise` 를 이용해서 동일한 작동을 하는 비동기 함수를 작성하면
 
@@ -181,10 +180,10 @@ delayPromise(1).then((result) => {
 
 <br></br>
 <!-- ***********************세번째 제목******************** -->
-### <span style="color:#595EFF"> [Async/Await] 3-1. Async/Await </span>
+## <span style="color:#595EFF"> [Async/Await] 3-1. Async/Await </span>
 
 
-#### Async 함수 이해
+### Async 함수 이해
 
 Async 함수의 결과 값은 Promise 이다!
 
@@ -220,7 +219,7 @@ func2().then((result) => {  // result의 값은 async 함수의 리턴값
 ```
 
 
-#### Await 사용 예제
+### Await 사용 예제
 
 `Await 가 붙으면 이 함수 종료될 때까지 뒤에 함수는 기다려라!`
 
@@ -291,10 +290,9 @@ func2().then((result) => {// then()의 결과는 return 값을 받아온다
 
 
 
-<br></br>
+<br>
 
-
-#### Await 특성
+### Await 특성
 
 ```js
 // delayPromise() 동일.. 
@@ -343,10 +341,9 @@ func2().then((result) => {
 
 
 
-<br></br>
+<br>
 
-
-#### Promise 사용처?
+### Promise 사용처?
 
 Async/Await 의 장점은 피라미드 Callback 함수를 계속 쓰는 것보다 `가독성이 좋다`
 
@@ -390,7 +387,8 @@ function display() {
 
 
 
-## <strong> 3. References </strong>
+<br></br>
+# <strong> 3. References </strong>
 
 
 From web sites ...
