@@ -6,22 +6,26 @@ ____
 
 # <strong> 1. Main Topic </strong>
 
-- 전역 스코프
+- [전역 스코프](#1)
 
-- 지역 스코프 : 함수 스코프, 블록 스코프
+- [지역 스코프: 함수 스코프, 블록 스코프](#2)
   - function(){}  +subset  //  {}
 
-- 함수 선언식 vs 함수 표현식 그리고 함수 호이스팅
+- [함수 선언식 vs 함수 표현식 그리고 함수 호이스팅](#3)
   - function f_Declaration(){}  // const f_Expression = function(){} 
 
-- 네스티드 스코프
-  - function() { functio() {} } ; 렉시컬 스코핑(lexical scoping)
+- [네스티드 스코프](#4)
+  - function() { functio() {} }
+  
+- [렉시컬 스코핑(lexical scoping)](#4-1)
+  - 변수의 유효 범위(scope)는 함수의 실행단이 아닌 선언단부터 정의된다
+  - 유효 범위는 즉, 변수의 참조가 어디를 가르키는지
 
-- Var vs Const vs Let
+- [Var vs Const vs Let](#5)
 
-- 클로져
+- [클로져](#6)
 
-- 스코프 디버깅
+- [스코프 디버깅](#7)
 
 
 
@@ -30,7 +34,7 @@ ____
 # <strong> 2. Sub Topics </strong>
 
 <!-- *********************첫번째 제목********************** -->
-## <span style="color:#595EFF"> [스코프] 1-1. 전역(Global) 스코프 </span>    
+## <span style="color:#595EFF" id="1"> [스코프] 1-1. 전역(Global) 스코프 </span>    
 
 
 ### 전역 변수 : A Declared variable outside of {} or a function 
@@ -45,7 +49,7 @@ ____
 
 <br>
 
-## <span style="color:#595EFF"> [스코프] 1-2. 지역(local) 스코프 </span>     
+## <span style="color:#595EFF" id="2"> [스코프] 1-2. 지역(local) 스코프 </span>     
 
 JS 에는 2가지 지역 스코프가 존재; 함수 스코프, 블록 스코프
 
@@ -95,7 +99,7 @@ function func(){
 
 <br>
 
-## <span style="color:#595EFF"> [스코프] 2-1. 함수 호스팅 </span> 
+## <span style="color:#595EFF" id="3"> [스코프] 2-1. 함수 호이스팅 </span> 
 
 함수가 `함수 선언식 (function declaration)`으로 선언되면, 현재 스코프의 최상단으로 호이스팅 된다.
 
@@ -148,14 +152,12 @@ second()   // I’m part of first 출력
 ```
 
 
+
 <br>
 
-
-### 네스티드 스코프 
+## <span style="color:#595EFF" id="4"> [스코프] 3-1. 네스티드 스코프 </span> 
 
 함수가 다른 함수 내부에서 정의되었다면, 내부 함수는 외부 함수의 변수에 접근할 수 있습니다. 
-
-다른말로 `렉시컬 스코핑(lexical scoping)`이라 칭한다.
 
 ```js
 function outerFunction () {
@@ -172,6 +174,56 @@ function outerFunction () {
 console.log(outer)  // Error
 ```
 
+<br>
+
+## <span style="color:#595EFF" id="4-1"> [스코프] 3-2. 렉시컬 스코핑 </span> 
+
+네스티드 스코프에서 알아야 할 `렉시컬 스코핑(Lexical scope) 한:어휘적 유효 범위` 이 있다.
+
+렉시컬 스코핑이란 `Scope가 함수 실행 시점이 아닌 함수 정의 시점에 정해진다는 의미`
+
+
+> 함수 실행 시점에서 그 함수의 스코프가 정해지는 것이 아니라 선언 시점부터 이미 함수의 스코프가 정해져 있다는 의미
+
+라고 해석하면 되나?
+
+```js
+let name = "zero"
+function log() {
+  console.log(name)
+}
+function wrapper() {
+  name = "nero"
+  log()
+}
+wrapper()     // nero
+```
+
+```js
+let name = "zero"
+function log() {
+  console.log(name)
+}
+function wrapper() {
+  let name = "nero'
+  log()
+}
+wrapper()    // zero
+``` 
+
+log() 함수는 선언 시점부터 전역 변수 name을 참조하고 있다
+
+위의 함수는 전역 변수로 선언된 name(log()가 참조하고 있는) 변수에 새로운 값을 할당하고 그 값을 호출을<br>
+아래 함수는 전역 변수 name 과는 별개로 함수 스코프 안에서 새로운 name 변수가 선언되었을 뿐, (log() 함수가 참조하고 있는)전역 변수 name의 새로운 할당은 없었다.
+
+이와 같이 변수의 선언 시점부터 이미 그 변수의 유효 범위는 지정되어 버린다는 의미? 그리고 <br> 
+함수가 실행되는 순간 변수를 참조하는 것이 아니라 정의될 때부터 변수를 이미 참조하고 있다
+
+<br>
+
+함수가 실행되는 순간의 변수를 참조한다면 아래 예제에서 wrapper() 가 실행된 후 log() 의 name 참조가 wrapper()에서 새로 선언된 name 이 되어버린 다는 것
+
+같은 억지 상황이 발생하게 된다.
 
 
 <br>
@@ -187,7 +239,7 @@ console.log(outer)  // Error
 
 
 <br></br>
-## <span style="color:#595EFF"> [변수] 3-1. Var vs Let vs Const </span>    
+## <span style="color:#595EFF" id="5"> [변수] 4-1. Var vs Let vs Const </span>    
 
 ### var
 
@@ -263,7 +315,7 @@ a = 100;
 
 
 <br></br>
-## <span style="color:#595EFF"> [스코프] 4-1. 클로져 </span> 
+## <span style="color:#595EFF" id="6"> [클로져] 5-1. 클로져 </span> 
 
 클로져 : 네스티드된 함수 스코프에서 내부 함수
 
