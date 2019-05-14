@@ -1,18 +1,29 @@
-Last edited May 07 2019 
+- - -
+# May 07 2019 
 ---
 
 
 ## <strong> 1. MAIN TOPIC </strong>
 
 - JS 배열에서 쓸 수 있는 몇 가지 함수 사용 예제 JavaScript Array Methods
-- filter 
-- map
-- forEach
-- find
-- some
-- every
-- includes
-- FizzBuzz 게임 코드짜기 
+
+- [filter](#1)
+
+- [map](#2)
+
+- [forEach](#3)
+
+- [find](#4)
+
+- [some](#5)
+
+- [every](#6)
+
+- [reduce](#7)
+
+- [includes](#8)
+
+- [FizzBuzz 게임 코드짜기 ](#9)
 
 
 
@@ -36,7 +47,7 @@ const items = [
 ]
 ```
 
-1. filter()     ->  반환 타입 Array
+<span id="1">1. filter()     ->  반환 타입 Array</span> 
 
 ```js
 const filteredItems = items.filter((item) => {
@@ -78,7 +89,7 @@ console.log(items)
 
 
 <br>
-2. map()    ->  반환 타입 array
+<span id="2">2. map()    ->  반환 타입 array</span> 
 
 배열 `객체의 특정 요소를 추출`하고자 할 때 유용하게 쓸 수 있다.
 
@@ -103,7 +114,8 @@ map() 함수는 반드시 배열을 반환한다.
 
 
 <br>
-3. forEach()      ->  반환 타입 값/object
+<span id="3">3. forEach()      ->  반환 타입 값/object</span> 
+
 
 ```js
 items.forEach((item) => {
@@ -128,7 +140,8 @@ for 문을 돌리면서 하나씩 추출할 수 도 있지만, 코드가 훨씬 
 
 
 <br>
-4. find()   ->  반환 타입 object/값 
+<span id="4">4. find()   ->  반환 타입 object/값 </span> 
+
 
 특정 값이 들어있는 (이 예제에서는) 객체를 추출한다.
 
@@ -173,8 +186,10 @@ console.log(foundItem)
 
 
 
+
 <br>
-5. some()   ->  반환 타입 true/false
+<span id="5">5. some()   ->  반환 타입 true/false </span> 
+
 
 배열 안에서 특정 조건을 만족하는 값이 `하나라도 있는지 없는지 알고 싶을 때` 사용한다.
 
@@ -194,7 +209,8 @@ true
 
 
 <br>
-6. every()    ->  반환 타입 true/false
+<span id="6">6. every()    ->  반환 타입 true/false</span> 
+
 
 배열 안의 값들이 특정 조건을 `모두 만족하는지 않은지 알고 싶을 때` 사용한다.
 
@@ -214,7 +230,8 @@ false
 
 
 <br>
-7. reduce()     ->  반환 타입 값
+<span id="7">7. reduce()     ->  반환 타입 값</span> 
+
 
 배열 안에 들어 있는 값들의 `총 합(누적)을 알고 싶을 때` 사용한다.
 
@@ -235,7 +252,8 @@ result
 
 
 <br>
-8. includes()     ->  반환 타입 true/false
+<span id="8">8. includes()     ->  반환 타입 true/false</span> 
+
 
 배열안에 특정 값과 같은 값이 포함되어 있는지 알고 싶을 때
 
@@ -263,7 +281,7 @@ false
 
 
 <br></br>
-### <span style="color:#595EFF"> [JS] 2-1. FizzBuzz 게임 코드  </span>  
+### <span style="color:#595EFF" id="9"> [JS] 2-1. FizzBuzz 게임 코드  </span>  
 
 map() 함수 이용
 
