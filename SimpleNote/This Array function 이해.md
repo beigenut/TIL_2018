@@ -1,22 +1,35 @@
 - - - 
-## May 10 2019  
+## May 16 2019  
 
 ____
 
 
 # <strong> 1. Main Topic </strong>
 
-- This
+- [This](#1)
+  - `생성자 함수와 객체의 매소드`를 제외한 모든 함수(화살표, 내부, 콜백을 포함) 내부의 this 는 전역 객체를 참조한다
 
-- 함수와 메소드 
+- [함수와 메소드](#2)
+  - 메소드 : 객체의 속성(Property)이 함수인 것
 
-- '객체'라 칭하는 범위
+- ['객체'는 어디까지 포함인가](#3)
+  - 배열 함수 값 메소드 ..
 
-- This .bind() .call()
+- [This 그리고 .bind() .call()](#4)
+  - func.bind(object)
 
-- Arrow function 
+- [Arrow function ](#5)
+  - 익명함수 || 생성자X || 콜백함수 || No this || 제너레이터X || .bind() X
+  - 화살표 함수의 this 는 lexical this => 상위 스코프의 this 를 참조 
 
-- Arrow function 이 갖는 유용성
+- [Arrow function 이 갖는 유용성](#6)
+  - 함수를 다른 함수의 인스턴스로 넘겨줄 때 유용
+  - 일반 함수 선언식보다 간결, 특히 콜백 함수로 사용할 때
+  - lexical scoping 은 binding 의 번거로움을 없애줌
+  - 화살표 함수를 포함하는 함수 스코프(context)의 this 를 이어 받는다
+
+- [매계변수의 기본값](#7)
+  - function callMe(name = 'mary'){console.log(name)} ... callMe()
 
 
 
@@ -25,7 +38,7 @@ ____
 # <strong> 2. Sub Topics </strong>
 
 <!-- *********************첫번째 제목********************** -->
-## <span style="color:#595EFF"> [This] 1-1. This 의 정의 This 가 가르키는 것 </span>    
+## <span style="color:#595EFF" id="1"> [This] 1-1. This 의 정의 This 가 가르키는 것 </span>    
 
 
 ### This 
@@ -53,10 +66,8 @@ const person = {       // 하나의 객체
 
 
 
-<br>
-
-
-### 함수와 메소드 차이?
+<br></br>
+## <span style="color:#595EFF" id="2"> [This] 2-1. 함수와 메소드의 차이</span>  
 
 자바 스크립트에서...
 
@@ -73,10 +84,8 @@ const person = {       // 하나의 객체
 
 
 
-<br>
-
-
-### 객체 포함 범위
+<br></br>
+## <span style="color:#595EFF" id="3"> [This] 3-1. 객체 포함 범위</span>  
 
 객체 안에는 다양한 Property(변수/요소)들이 존재할 수 있고 그 프로퍼티들은
 
@@ -89,7 +98,6 @@ const person = {       // 하나의 객체
 - 객체 안에서 정의된 메소드
 
 등이 될 수 있다 
-
 
 
 
@@ -170,10 +178,8 @@ person2.introduce(); // 안녕하세요, 제 이름은 신하경입니다.
 
 
 
-<br>
-
-
-### .bind() .apply() .call() 사용해서 this 조정하기
+<br></br>
+## <span style="color:#595EFF" id="4"> [This] 4-1. .bind() .apply() .call() 사용해서 this 조정하기 </span>    
 
 함수 객체의 bind 메소드를 호출하면, 메소드의 인수(인스턴스)로 넘겨준 값이 this가 되는 새로운 함수를 반환
 
@@ -207,17 +213,189 @@ printGrade.apply(student, [100]); // .apply()의 경우 반드시 배열을 넘�
 
 
 <br></br>
-<!-- ***********************두번째 제목******************** -->
-## <span style="color:#595EFF"> [Arrow Function] 2-1. Arrow Fuction ? </span>
+## <span style="color:#595EFF" id="5"> [Arrow Function] 5-1. Arrow Fuction ? </span>
+
+화살표 함수는..
+
+- 익명 함수이다. 물론 새로운 변수에 대입하는 방식으로 이름을 부여할 수 있다
+  - const func = x=> x+2
+
+- 화살표 함수는 `생성자로 사용될 수 없다`. 
+  - prototype 속성을 갖고 있지 않다.
+
+- 화살표 함수는 `스스로의 this, arguments, super`를 가지지 않는다. 
+  - 화살표 함수 안에서 this 를 쓸 수 없는 것은 절대 아니다. 
+  - this 를 사용하면 `함수 스코프에 존재하는 this` 를 가르킬 뿐이다.
+  - this = this
+
+- 화살표 함수 내부에서 `yield 키워드를 사용할 수 없다`.
+  - `제너레이터` 로 사용될 수 없다.
+
+- 콜백 함수로 사용될 수 있다
+  - const pow = arr.map(x => x + 2)
+
+
+
+<br>
+
+### 화살표 함수 정의시 유의할 점
+
+```js
+function Person(name) {
+  this.name = name;   // 바로 이 name 속성
+  this.getName = () => {
+    // 여기에서 사용된 `this`는 '함수가 정의된 스코프', 
+    // 즉 'Person 함수 스코프'에 존재하는 `this`를 가리킨다.
+    return this.name;
+  }
+}
+
+const mary = new Person('mary');
+mary.getName(); // 'mary'
+```
+
+생성자 함수 내부에서 정의된 화살표 함수의 경우, <br>
+return 값으로 받는 this.name은 Person 생성자를 통해 생성된 객체의 name 속성의 값을 참고한다
+
+
+<br>
+
+
+```js
+const mary = {
+  name: 'mary',
+  getName: () => {
+    return this.name;
+  }
+};
+// 위의 화살표 함수는 전역 스코프에서 정의 ->`this`는 전역 객체
+// `mary`의 메소드로 사용된다고 해도, 전역 객체 즉, window.
+// `window.name` = undefined
+mary.getName(); // undefined ''
+```
+
+this 가 있는 함수 내부에서 선언된 화살표 함수의 this 는 같은 this 를 참조
+
+그외 대부분의 화살표 함수는 객체 메소드로 직접 정의되었다 하더라도 전역 스코프에 속한다
+
+
+<br>
+
+
+
+### 일반 함수의 this, 화살표 함수의 this
+
+일반 함수의 this 는 함수가 `호출`이 될 때 어떻게 호출되는가에 따라 `동적으로 지정`된다.
+
+생성자 함수와 객체의 매소드를 제외한 모든 함수(화살표, 내부, 콜백을 포함) 내부의 this 는 전역 객체를 참조한다
 
 
 
 
 
 <br></br>
-<!-- ***********************세번째 제목******************** -->
-## <span style="color:#595EFF"> [Async/Await] 3-1. Async/Await </span>
+## <span style="color:#595EFF" id="6"> [Arrow Function] 5-2. Arrow function 이 갖는 유용성</span>
 
+화살표 함수의 `this 가 어디를 참고`하는지는 `어떻게 정의되었는지` 에 따라 결정된다
+
+<br>
+
+화살표 함수 => `함수를 다른 함수의 인수로 넘겨야 할 때 사용하자`
+
+```js
+function Person(name) {
+  this.name = name;
+  this.getName = () => {
+    return this.name;
+  }
+}
+
+const mary = new Person('mary');
+
+function printResult(func) {
+  console.log(func());
+}
+
+// 화살표 함수로 정의된 메소드는 다른 함수의 인수로 넘겨도 아무런 문제가 없습니다!
+printResult(mary.getName);   // mary
+```
+
+
+
+<br></br>
+## <span style="color:#595EFF" id="7"> [Arrow Function] 5-3. Arrow function 쓰지 말자</span>
+
+객체의 메소드로 선언할 땐 화살표 함수를 쓰지말자
+
+```js
+const person = {
+  name: 'john',
+  greeting: () => console.log(`hello, ${this.name}.`)  // 객체 안 메소드지만 전역 객체
+}
+
+person.greeting()  // hello, undefinded
+```
+
+객체의 메소드로 넘길 때는 선언식으로!
+
+```js
+const person = {
+  name: 'john',
+  greeting() {
+    console.log(`hello, ${this.name}`)
+  }
+}
+
+person.greeting()  // hello, john
+```
+
+
+<br>
+
+화살표 함수로 정의된 메소드를 prototype 에 할당하는 경우에도 선언식으로
+
+```js
+const person = {
+  name: 'Lee',
+};
+
+Object.prototype.sayHi = function() {
+  console.log(`Hi ${this.name}`);
+};
+
+// DO NOT Object.prototype.sayHi = () => console.log(`Hi ${this.name}`);
+
+person.sayHi(); // Hi Lee
+```
+
+
+<br>
+
+화살표 함수는 prototype 을 가지지 않는다. 즉, 생성자 함수로 쓰일 수 없다
+
+```js
+const Foo = () => {};
+
+console.log(Foo.hasOwnProperty('prototype')); // false
+const foo = new Foo(); // TypeError: Foo is not a constructor
+```
+
+
+
+<br></br>
+## <span style="color:#595EFF" id="7"> [Default Parameter] 6-1. 매계변수의 기본값</span>
+
+JS 기본적으로 변수의 초기값을 지정해주지 않으면 `undefined` 으로 지정된다.
+
+```js
+function hello(name = 'Mary') {
+  console.log(`Hello, ${name}!`);
+}
+
+hello('John'); // Hello, John!
+hello(); // Hello, Mary!
+hello(undefined); // Hello, Mary!
+```
 
 
 
@@ -230,7 +408,7 @@ From web sites ...
 
 - <a href="https://velog.io/@rohkorea86/Promiseis-%EB%B9%84%EB%8F%99%EA%B8%B0%EB%8F%99%EA%B8%B0%EC%97%90%EC%84%9C-Promise%EA%B9%8C%EC%A7%80" target="_blank">Promiseis-비동기동기에서-Promise까지</a>
 
-
+- <a href="https://poiemaweb.com/es6-arrow-function" target="_blank">화살표 함수 이해하기</a>
 From Youtube videos...
 
 - <a href="https://www.youtube.com/watch?v=CA5EDD4Hjz4&list=WL&index=36&t=0s" target="_blank">자바스크립트 promise? 나도 써보자, 기본 개념부터</a>
