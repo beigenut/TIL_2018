@@ -22,8 +22,12 @@ ____
   - 유효 범위는 즉, 변수의 참조가 어디를 가르키는지
 
 - [클로져](#6)
+  - 고차 함수 내부의 함수
+  - 클로져는 자신을 감싸는 외부 함수의 변수에 접근할 수 있다 
 
 - [스코프 디버깅](#7)
+  - debugger 코드 삽입 
+  - 개발자 도구 breakpoint 추가
 
 
 
@@ -284,6 +288,37 @@ console.log(counter()); // 2
 
 <br></br>
 ## <span style="color:#595EFF" id="7"> [디버깅] 5-1. 스코프 디버깅 </span> 
+
+개발자 도구를 사용해서 클로저 안에 들어잇는 변수들을 알아낼 수 있다.
+
+원하는 함수 내부에 `debugger` 코드를 삽입한다
+
+```js
+function prepareCake(flavor) {
+  return function () {
+    debugger
+    setTimeout(_=>console.log(`Make a ${flavor} cake!`), 1000)
+  }
+}
+const makeCakeLater = prepareCake('banana')
+```
+
+개발자 도구를 열고 `source` 탭을 확인하면 
+
+[<img src="https://cdn-images-1.medium.com/max/1200/1*Si3yT9ln7dOuuzNuwEGFaA.png">]()
+
+
+
+<br>
+
+디버거 코드를 삽입하는 방법 이외에도 `breakpoint`를 추가하는 방식이 있는데,
+
+개발자 도구 - source 탭에서 디버깅을 할 원하는 코드 부분에 `breakpoint` 를 추가한다.
+
+[<img src="https://cdn-images-1.medium.com/max/1200/1*qtVfWXZ3jgDIOu5ZId6PQQ.png">]()
+
+
+> 이미지 출처 [링크]("https://medium.com/@khwsc1/%EB%B2%88%EC%97%AD-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%8A%A4%EC%BD%94%ED%94%84%EC%99%80-%ED%81%B4%EB%A1%9C%EC%A0%80-javascript-scope-and-closures-8d402c976d19")
 
 
 
