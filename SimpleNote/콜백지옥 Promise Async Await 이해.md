@@ -6,22 +6,26 @@ ____
 
 # <strong> 1. Main Topic </strong>
 
-- 콜백 지옥
+- [콜백 지옥](#1)
 
-- 콜백 지옥의 문제점 / 해결 방법
+- [콜백 지옥의 문제점](#2)
 
-- Promise 
+- [해결 방법](#3)
 
-- Async / Await 사용 이해
+- [Promise](#4) 
 
+- [Async / Await 사용 이해](#5)
 
+- [Async / Await 의 예제](#6)
+
+- [Async / Await 의 특성](#7)
 
 
 <br></br>
 # <strong> 2. Sub Topics </strong>
 
 <!-- *********************첫번째 제목********************** -->
-## <span style="color:#595EFF"> [Callback] 1-1. 콜백, 그리고 콜백 지옥 </span>    
+## <span style="color:#595EFF" id="1"> [Callback] 1-1. 콜백, 그리고 콜백 지옥 </span>    
 
 
 ### 자바 스크립트에서 비동기 처리란?
@@ -56,7 +60,7 @@ step1(function (value1) {
 
 
 
-### 이게 왜 문제?
+## <span style="color:#595EFF" id="2"> [Callback] 1-2. 콜백 지옥의 문제점 </span> 
 
 - 비동기 함수의 결과값을 받아 다음 함수로 넘겨줘야 하는 경우 코드가 복잡해짐. 머리가 아파짐.
   - Promise 는 return 값으로 resolved 된 결과 값을 넘겨줄 수 있고 .then() 에서 받아 쓸 수 있음
@@ -71,7 +75,7 @@ step1(function (value1) {
 
 
 
-### 콜백지옥 해결 방안?
+## <span style="color:#595EFF" id="3"> [Callback] 1-3. 콜백 지옥 해결 방안 </span> 
 
 1. `동기 함수`를 사용한다
 
@@ -111,7 +115,7 @@ function afterStep2(value2) {
 
 <br></br>
 <!-- ***********************두번째 제목******************** -->
-## <span style="color:#595EFF"> [Promise] 2-1. Promise </span>
+## <span style="color:#595EFF" id="4"> [Promise] 2-1. Promise </span>
 
 
 ### Promise?
@@ -177,10 +181,54 @@ delayPromise(1).then((result) => {
 
 
 
+<br>
+
+### Promise 사용처?
+
+Promise 의 장점은 피라미드 Callback 함수를 계속 쓰는 것보다 `가독성이 좋다`
+
+
+예를 들어, logIn 서비스를 프로그래밍 한다고 할 때
+
+```
+getData(userInfo)
+  .then(parseValue)
+  .then(auth)
+  .then(diaplay);
+```
+
+user의 정보를 받아서 그 값이 valid 한지 확인하고 그 결과로 인증하고, 인증된 결과값을 통해 어떠한 결과를 띄운다 의 프로세스를 Promise 를 반환하는 함수를 통해 구현한다고 했을 때, 
+
+```js
+const userInfo = {
+  id: 'test@abc.com',
+  pw: '****'
+};
+
+function parseValue() {
+  return new Promise({
+    // ...
+  });
+}
+function auth() {
+  return new Promise({
+    // ...
+  });
+}
+function display() {
+  return new Promise({
+    // ...
+  });
+}
+```
+
+와 같다면, .then() 을 통해 값들을 전달받으면서 활용할 수 있다
+
+
 
 <br></br>
 <!-- ***********************세번째 제목******************** -->
-## <span style="color:#595EFF"> [Async/Await] 3-1. Async/Await </span>
+## <span style="color:#595EFF" id="5"> [Async/Await] 3-1. Async/Await </span>
 
 
 ### Async 함수 이해
@@ -219,7 +267,7 @@ func2().then((result) => {  // result의 값은 async 함수의 리턴값
 ```
 
 
-### Await 사용 예제
+## <span style="color:#595EFF" id="6"> [Async/Await] 3-2. Async/Await 사용 예제</span>
 
 `Await 가 붙으면 이 함수 종료될 때까지 뒤에 함수는 기다려라!`
 
@@ -292,7 +340,8 @@ func2().then((result) => {// then()의 결과는 return 값을 받아온다
 
 <br>
 
-### Await 특성
+
+## <span style="color:#595EFF" id="7"> [Async/Await] 3-3. Async/Await 의 특성</span>
 
 ```js
 // delayPromise() 동일.. 
@@ -339,50 +388,6 @@ func2().then((result) => {
 })
 ```
 
-
-
-<br>
-
-### Promise 사용처?
-
-Async/Await 의 장점은 피라미드 Callback 함수를 계속 쓰는 것보다 `가독성이 좋다`
-
-
-예를 들어, logIn 서비스를 프로그래밍 한다고 할 때
-
-```
-getData(userInfo)
-  .then(parseValue)
-  .then(auth)
-  .then(diaplay);
-```
-
-user의 정보를 받아서 그 값이 valid 한지 확인하고 그 결과로 인증하고, 인증된 결과값을 통해 어떠한 결과를 띄운다 의 프로세스를 Promise 를 반환하는 함수를 통해 구현한다고 했을 때, 
-
-```js
-const userInfo = {
-  id: 'test@abc.com',
-  pw: '****'
-};
-
-function parseValue() {
-  return new Promise({
-    // ...
-  });
-}
-function auth() {
-  return new Promise({
-    // ...
-  });
-}
-function display() {
-  return new Promise({
-    // ...
-  });
-}
-```
-
-와 같다면, .then() 을 통해 값들을 전달받으면서 활용할 수 있다
 
 
 
