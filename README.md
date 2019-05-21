@@ -1,9 +1,25 @@
 ___
-The last updated version v0.0.3      
+The last updated version v0.0.4      
 ___
 
 
 ## GIT control
+
+
+<br></br>
+### git initial setting 
+
+```
+Open Git Bash (/ternimal) on responding file location ...  
+
+$ git init
+$ git add . || $ git add (file name)
+$ git commit -m "(Insert commit message)"
+$ git remote add origin (URL)
+$ git push -u origin master
+```
+
+
 
 ### .gitignore file cach delete on Git Bash
 
@@ -20,18 +36,15 @@ You can write..
 - */folderName
 
 
+
 <br></br>
-### git initial setting 
+## how to change an uploaded file name
 
 ```
-Open Git Bash (/ternimal) on responding file location ...  
-
-$ git init
-$ git add . || $ git add (file name)
-$ git commit -m "(Insert commit message)"
-$ git remote add origin (URL)
-$ git push -u origin master
-```
+$ git mv "index.html" "index2.html"
+$ git commit -m "Change the file name to..."
+$ git push
+``` 
 
 
 <br></br>
@@ -52,9 +65,10 @@ $ git push -u origin master
 <br></br>
 ___
 ___
-The lasted version updated on 05/16/18 by me	              
+The lasted version updated on 05/21/19 by me	              
 
 ### version log <br>
 v0.0.1 - [git] Deleting cach on .gitignore <br>
 v0.0.2 - [naming regualation] BEM examples <br>
 v0.0.3 - [git] How to push the first commit to a new repository <br>
+v0.0.4 - [git] How to change an uploaded file name <br>
